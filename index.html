@@ -3,212 +3,458 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GODYOUKNOW - Member Roster</title>
+    <title>GODYOUKNOW Members Roster</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap');
 
         body {
-            background-color: #0d0d0d;
-            color: #ffffff;
+            background-color: #000;
+            color: #e0e0e0;
             font-family: 'Kanit', sans-serif;
             margin: 0;
-            padding: 40px 20px;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .container {
-            max-width: 1100px;
-            margin: 0 auto;
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            box-sizing: border-box;
+            margin-top: 20px;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 50px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        /* Top Navigation/Header */
+        .top-nav {
+            background-color: #1a1a1a;
+            width: 100%;
+            padding: 15px 0;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        header h1 {
-            font-size: 2.5rem;
-            margin: 0;
+        .top-nav .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
             color: #fff;
-            border-bottom: 2px solid #ff4d4d;
-            display: inline-block;
+            margin-right: 40px;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            background-color: #333;
+            border: 1px solid #444;
+            border-radius: 5px;
+            padding: 8px 15px 8px 35px;
+            color: #eee;
+            width: 250px;
+            font-family: 'Kanit', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .search-box input::placeholder {
+            color: #bbb;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+        }
+
+        /* Main Content Header */
+        .main-header {
+            text-align: center;
+            margin: 40px 0 60px;
+        }
+
+        .main-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .main-header h2 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #aaa;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Section Titles */
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            margin: 50px 0 25px;
+            border-bottom: 1px solid #333;
             padding-bottom: 10px;
         }
 
-        /* Section Styling */
-        .section-title {
-            font-size: 1.5rem;
-            margin: 40px 0 20px;
-            padding-left: 15px;
-            border-left: 5px solid;
+        .section-header h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin: 0;
+            color: #fff;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-right: 15px;
         }
 
-        .founder-title { border-color: #ffcc00; color: #ffcc00; }
-        .leader-title { border-color: #ff4d4d; color: #ff4d4d; }
-        .member-title { border-color: #00ff88; color: #00ff88; }
+        .section-header span {
+            font-size: 0.9rem;
+            color: #888;
+        }
 
-        /* Grid System */
+        /* Grid for Cards */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
         }
 
-        /* Card Styling */
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
+        /* Member Card Styling */
+        .member-card {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
             padding: 20px;
             display: flex;
             align-items: center;
-            transition: transform 0.3s ease, background 0.3s ease;
+            gap: 15px;
             position: relative;
+            transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
             overflow: hidden;
         }
 
-        .card:hover {
+        .member-card:hover {
             transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.08);
+            background-color: #2a2a2a;
+            border-color: #555;
         }
 
-        /* Role Badge Glow */
-        .card::before {
-            content: "";
+        /* Role Indicators */
+        .member-card.founder::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 4px;
+            width: 5px;
             height: 100%;
+            background-color: #f7a322; /* Gold */
+        }
+        .member-card.leader::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: #e74c3c; /* Red */
+        }
+        .member-card.member::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: #2ecc71; /* Green */
         }
 
-        .card.founder::before { background: #ffcc00; box-shadow: 0 0 15px #ffcc00; }
-        .card.leader::before { background: #ff4d4d; box-shadow: 0 0 15px #ff4d4d; }
-        .card.member::before { background: #00ff88; box-shadow: 0 0 15px #00ff88; }
-
-        .avatar {
-            width: 70px;
-            height: 70px;
+        .member-avatar {
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            background: #333;
-            margin-right: 20px;
-            border: 2px solid rgba(255,255,255,0.1);
+            background-color: #444;
             object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.1);
         }
 
-        .info {
+        .member-info {
             flex-grow: 1;
         }
 
-        .info h3 {
+        .member-info h4 {
             margin: 0;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 600;
+            color: #fff;
         }
 
-        .info p {
-            margin: 5px 0 10px;
-            font-size: 0.85rem;
-            opacity: 0.7;
+        .member-info .role-tag {
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-top: 4px;
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
             text-transform: uppercase;
         }
 
-        .fb-link {
+        .member-info .founder-tag { background-color: #f7a32220; color: #f7a322; border: 1px solid #f7a322; }
+        .member-info .leader-tag { background-color: #e74c3c20; color: #e74c3c; border: 1px solid #e74c3c; }
+        .member-info .member-tag { background-color: #2ecc7120; color: #2ecc71; border: 1px solid #2ecc71; }
+
+
+        .member-info .status-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #2ecc71; /* Green for online */
+            margin-left: 5px;
+        }
+
+        .member-info .facebook-link {
             display: inline-flex;
             align-items: center;
-            color: #1877f2;
             text-decoration: none;
+            color: #777;
             font-size: 0.9rem;
-            font-weight: 500;
-            transition: 0.2s;
+            margin-top: 8px;
+            transition: color 0.2s ease;
         }
 
-        .fb-link i {
-            margin-right: 8px;
-            font-size: 1.1rem;
+        .member-info .facebook-link:hover {
+            color: #1877f2;
         }
 
-        .fb-link:hover {
-            color: #4facfe;
-            text-decoration: underline;
+        .member-info .facebook-link i {
+            margin-right: 5px;
         }
 
-        /* Status Dot */
-        .status {
+        /* Footer (System design by) */
+        .system-design {
+            text-align: center;
+            margin-top: 60px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            color: #555;
+        }
+
+        /* Scrollbar styles (optional, but good for dark UIs) */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #555;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #777;
+        }
+
+        /* Right bottom system status - adjust as needed, this is just a placeholder */
+        .system-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-size: 0.8rem;
+            color: #888;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .system-status .indicator {
             width: 10px;
             height: 10px;
-            background: #00ff88;
+            background-color: #2ecc71; /* Green for online */
             border-radius: 50%;
-            display: inline-block;
-            margin-right: 5px;
-            box-shadow: 0 0 8px #00ff88;
         }
 
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .top-nav {
+                flex-direction: column;
+                padding: 10px 0;
+            }
+            .top-nav .logo {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            .main-header h1 {
+                font-size: 2.2rem;
+            }
+            .main-header h2 {
+                font-size: 1rem;
+            }
+            .section-header h3 {
+                font-size: 1.3rem;
+            }
+            .grid {
+                grid-template-columns: 1fr; /* Single column on small screens */
+            }
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <h1>GODYOUKNOW</h1>
-    </header>
-
-    <div class="section-title founder-title">Founder</div>
-    <div class="grid">
-        <div class="card founder">
-            <img src="https://via.placeholder.com/70" alt="Avatar" class="avatar">
-            <div class="info">
-                <h3>Paul Winterfall</h3>
-                <p><span class="status"></span> Active</p>
-                <a href="https://facebook.com/yourlink" target="_blank" class="fb-link">
-                    <i class="fab fa-facebook"></i> Facebook
-                </a>
-            </div>
-        </div>
-        </div>
-
-    <div class="section-title leader-title">Leader</div>
-    <div class="grid">
-        <div class="card leader">
-            <img src="https://via.placeholder.com/70" alt="Avatar" class="avatar">
-            <div class="info">
-                <h3>Nairo Winterfall</h3>
-                <p><span class="status"></span> Active</p>
-                <a href="#" target="_blank" class="fb-link">
-                    <i class="fab fa-facebook"></i> Facebook
-                </a>
-            </div>
+    <div class="top-nav">
+        <div class="logo">GODYOUKNOW</div>
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="SEARCH MEMBERS...">
         </div>
     </div>
 
-    <div class="section-title member-title">Members</div>
-    <div class="grid">
-        <div class="card member">
-            <img src="https://via.placeholder.com/70" alt="Avatar" class="avatar">
-            <div class="info">
-                <h3>Augusty Threethousand</h3>
-                <p><span class="status"></span> Active</p>
-                <a href="#" target="_blank" class="fb-link">
-                    <i class="fab fa-facebook"></i> Facebook
-                </a>
+    <div class="container">
+        <div class="main-header">
+            <h1>GODYOUKNOW</h1>
+            <h2>GODYOUKNOW MEMBERS</h2>
+        </div>
+
+        <div class="section-header">
+            <h3>FOUNDERS</h3>
+            <span>(5)</span>
+        </div>
+        <div class="grid">
+            <div class="member-card founder">
+                <img src="https://via.placeholder.com/60/f7a322/000000?text=P" alt="Avatar" class="member-avatar">
+                <div class="member-info">
+                    <h4>Paul Winterfall</h4>
+                    <span class="role-tag founder-tag">Founder</span>
+                    <a href="https://facebook.com/paulwinterfall" target="_blank" class="facebook-link">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </a>
+                </div>
+            </div>
+            <div class="member-card founder">
+                <img src="https://via.placeholder.com/60/f7a322/000000?text=T" alt="Avatar" class="member-avatar">
+                <div class="member-info">
+                    <h4>Thomas Winterfall</h4>
+                    <span class="role-tag founder-tag">Founder</span>
+                    <a href="https://facebook.com/thomaswinterfall" target="_blank" class="facebook-link">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </a>
+                </div>
+            </div>
+            <div class="member-card founder">
+                <img src="https://via.placeholder.com/60/f7a322/000000?text=A" alt="Avatar" class="member-avatar">
+                <div class="member-info">
+                    <h4>Aniska Prime</h4>
+                    <span class="role-tag founder-tag">Founder</span>
+                    <a href="https://facebook.com/aniskaprime" target="_blank" class="facebook-link">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </a>
+                </div>
+            </div>
+            <div class="member-card founder">
+                <img src="https://via.placeholder.com/60/f7a322/000000?text=M" alt="Avatar" class="member-avatar">
+                <div class="member-info">
+                    <h4>MeudMox Winterfall</h4>
+                    <span class="role-tag founder-tag">Founder</span>
+                    <a href="https://facebook.com/meudmoxwinterfall" target="_blank" class="facebook-link">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </a>
+                </div>
+            </div>
+            <div class="member-card founder">
+                <img src="https://via.placeholder.com/60/f7a322/000000?text=J" alt="Avatar" class="member-avatar">
+                <div class="member-info">
+                    <h4>JebSee Winterfall</h4>
+                    <span class="role-tag founder-tag">Founder</span>
+                    <a href="https://facebook.com/jebseewinterfall" target="_blank" class="facebook-link">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </a>
+                </div>
             </div>
         </div>
-        
-        <div class="card member">
-            <img src="https://via.placeholder.com/70" alt="Avatar" class="avatar">
-            <div class="info">
-                <h3>Lawn Godyouknow</h3>
-                <p><span class="status"></span> Active</p>
-                <a href="#" target="_blank" class="fb-link">
-                    <i class="fab fa-facebook"></i> Facebook
-                </a>
+
+        <div class="section-header">
+            <h3>LEADERS</h3>
+            <span>(1)</span>
+        </div>
+        <div class="grid">
+            <div class="member-card leader">
+                <img src="https://via.placeholder.com/60/e74c3c/000000?text=N" alt="Avatar" class="member-avatar">
+                <div class="member-info">
+                    <h4>Nairo Winterfall</h4>
+                    <span class="role-tag leader-tag">Leader</span>
+                    <a href="https://facebook.com/nairowinterfall" target="_blank" class="facebook-link">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </a>
+                </div>
             </div>
         </div>
+
+        <div class="section-header">
+            <h3>MEMBERS</h3>
+            <span>(3)</span>
+        </div>
+        <div class="grid">
+            <div class="member-card member">
+                <img src="https://via.placeholder.com/60/2ecc71/000000?text=A" alt="Avatar" class="member-avatar">
+                <div class="member-info">
+                    <h4>Augusty Threethousand</h4>
+                    <span class="role-tag member-tag">Member</span>
+                    <a href="https://facebook.com/augustythreethousand" target="_blank" class="facebook-link">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </a>
+                </div>
+            </div>
+            <div class="member-card member">
+                <img src="https://via.placeholder.com/60/2ecc71/000000?text=K" alt="Avatar" class="member-avatar">
+                <div class="member-info">
+                    <h4>Kingeet Diamondmenow</h4>
+                    <span class="role-tag member-tag">Member</span>
+                    <a href="https://facebook.com/kingeetdiamondmenow" target="_blank" class="facebook-link">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </a>
+                </div>
+            </div>
+            <div class="member-card member">
+                <img src="https://via.placeholder.com/60/2ecc71/000000?text=L" alt="Avatar" class="member-avatar">
+                <div class="member-info">
+                    <h4>Lawn Godyouknow</h4>
+                    <span class="role-tag member-tag">Member</span>
+                    <a href="https://facebook.com/lawngodyouknow" target="_blank" class="facebook-link">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="system-design">
+            SYSTEM DESIGN BY NALI CLOUD
+        </div>
+
     </div>
-</div>
+
+    <div class="system-status">
+        <span class="indicator"></span>
+        <span class="text">Online</span>
+        <span class="time">18:44 12/1/2569</span>
+    </div>
 
 </body>
 </html>
