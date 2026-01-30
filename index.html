@@ -93,7 +93,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 80px 0 25px;
+            margin: 60px 0 20px;
             border-bottom: 1px solid #1a1a1a;
             padding-bottom: 15px;
         }
@@ -105,7 +105,7 @@
         }
 
         .section-header h3 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             margin: 0;
             color: #fff;
@@ -113,7 +113,7 @@
         }
 
         .section-header span {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #333;
             margin-left: 15px;
         }
@@ -149,23 +149,24 @@
             font-size: 0.9rem;
         }
 
-        /* --- Member Grid (เรียงรายชื่อแถวละ 4 คนตาม UI เดิม) --- */
+        /* --- Grid Layout (3 คอลัมน์) --- */
         .grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 15px;
+            margin-bottom: 40px;
         }
 
         .member-card {
             background-color: rgba(13, 13, 13, 0.85);
             border: 1px solid #1a1a1a;
-            border-radius: 12px;
+            border-radius: 10px;
             padding: 15px;
             display: flex;
             align-items: center;
             gap: 15px;
             position: relative;
-            transition: all 0.3s ease;
+            transition: 0.3s ease;
             backdrop-filter: blur(5px);
         }
 
@@ -173,33 +174,32 @@
             display: none;
         }
 
-        .member-card.founder { border-color: #f7a32240; box-shadow: 0 0 10px rgba(247, 163, 34, 0.05); }
-        .member-card.leader { border-color: #e74c3c40; box-shadow: 0 0 10px rgba(231, 76, 60, 0.05); }
+        .member-card.founder { border-color: #f7a32240; }
+        .member-card.leader { border-color: #e74c3c40; }
         .member-card.member { border-color: #ffffff08; }
 
         .member-card:hover {
             background-color: rgba(22, 22, 22, 0.95);
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             border-color: #555;
-            z-index: 2;
         }
 
-        /* Avatar Container Fix (ให้รูปพอดีกรอบเป๊ะ) */
+        /* Profile Frame Fix (พอดีกรอบ) */
         .avatar-container {
             position: relative;
-            width: 65px;
-            height: 65px;
+            width: 60px;
+            height: 60px;
             flex-shrink: 0;
-            border-radius: 10px;
+            border-radius: 8px;
             border: 1px solid #222;
-            overflow: hidden; /* บังคับให้รูปอยู่ในกรอบ */
+            overflow: hidden; /* บังคับรูปไม่ให้ล้นกรอบ */
         }
 
         .member-avatar {
             width: 100%;
             height: 100%;
             background-image: url('https://img5.pic.in.th/file/secure-sv1/Untitled-2b13b6916ef20d67c.png');
-            background-size: cover; /* ขยายรูปให้เต็มพื้นที่กรอบโดยไม่เสียสัดส่วน */
+            background-size: cover; /* ขยายรูปให้เต็มกรอบโดยไม่เสียสัดส่วน */
             background-position: center;
             background-repeat: no-repeat;
         }
@@ -208,12 +208,12 @@
             position: absolute;
             bottom: 3px;
             right: 3px;
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             background-color: #2ecc71;
             border-radius: 50%;
-            border: 2px solid #0d0d0d;
-            box-shadow: 0 0 8px #2ecc71;
+            border: 1.5px solid #0d0d0d;
+            box-shadow: 0 0 5px #2ecc71;
             z-index: 2;
         }
 
@@ -251,24 +251,25 @@
         .facebook-link {
             text-decoration: none;
             color: #0084ff;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
             margin-top: 4px;
         }
 
         .system-design {
             text-align: center;
-            margin-top: 150px;
+            margin-top: 100px;
             font-size: 0.7rem;
             color: #1a1a1a;
             letter-spacing: 4px;
             text-transform: uppercase;
         }
 
-        /* สำหรับหน้าจอเล็ก */
-        @media (max-width: 1100px) { .grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (max-width: 850px) { .grid { grid-template-columns: repeat(2, 1fr); } .section-wrapper { flex-direction: column; align-items: flex-start; gap: 15px; } }
-        @media (max-width: 500px) { .grid { grid-template-columns: 1fr; } }
+        @media (max-width: 1000px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 700px) { 
+            .grid { grid-template-columns: 1fr; }
+            .section-wrapper { flex-direction: column; align-items: flex-start; gap: 15px; }
+        }
     </style>
 </head>
 <body>
@@ -295,85 +296,67 @@
                 <input type="text" id="memberSearch" placeholder="SEARCH MEMBERS..." onkeyup="searchFunction()">
             </div>
         </div>
-
-        <div class="grid" id="memberGrid">
+        <div class="grid" id="founderGrid">
             <div class="member-card founder">
-                <div class="avatar-container">
-                    <div class="member-avatar"></div>
-                    <div class="status-dot"></div>
-                </div>
+                <div class="avatar-container"><div class="member-avatar"></div><div class="status-dot"></div></div>
                 <div class="member-info">
                     <span class="role-label founder-label"><i class="fas fa-crown"></i> FOUNDER</span>
                     <h4 class="member-name">Thomas Winterfall</h4>
                     <a href="#" class="facebook-link">Facebook</a>
                 </div>
             </div>
-
             <div class="member-card founder">
-                <div class="avatar-container">
-                    <div class="member-avatar"></div>
-                    <div class="status-dot"></div>
-                </div>
+                <div class="avatar-container"><div class="member-avatar"></div><div class="status-dot"></div></div>
                 <div class="member-info">
                     <span class="role-label founder-label"><i class="fas fa-crown"></i> FOUNDER</span>
                     <h4 class="member-name">Paul Winterfall</h4>
                     <a href="#" class="facebook-link">Facebook</a>
                 </div>
             </div>
-
             <div class="member-card founder">
-                <div class="avatar-container">
-                    <div class="member-avatar"></div>
-                    <div class="status-dot"></div>
-                </div>
+                <div class="avatar-container"><div class="member-avatar"></div><div class="status-dot"></div></div>
                 <div class="member-info">
                     <span class="role-label founder-label"><i class="fas fa-crown"></i> FOUNDER</span>
                     <h4 class="member-name">Awake Prime</h4>
                     <a href="#" class="facebook-link">Facebook</a>
                 </div>
             </div>
+        </div>
 
-            <div class="member-card founder">
-                <div class="avatar-container">
-                    <div class="member-avatar"></div>
-                    <div class="status-dot"></div>
-                </div>
-                <div class="member-info">
-                    <span class="role-label founder-label"><i class="fas fa-crown"></i> FOUNDER</span>
-                    <h4 class="member-name">MeudMon Winterfall</h4>
-                    <a href="#" class="facebook-link">Facebook</a>
-                </div>
+        <div class="section-wrapper">
+            <div class="section-header">
+                <h3>LEADERS</h3>
+                <span>/ 02</span>
             </div>
-
+        </div>
+        <div class="grid" id="leaderGrid">
             <div class="member-card leader">
-                <div class="avatar-container">
-                    <div class="member-avatar"></div>
-                    <div class="status-dot"></div>
-                </div>
+                <div class="avatar-container"><div class="member-avatar"></div><div class="status-dot"></div></div>
                 <div class="member-info">
                     <span class="role-label leader-label"><i class="fas fa-crown"></i> LEADER</span>
                     <h4 class="member-name">Nairo Winterfall</h4>
                     <a href="#" class="facebook-link">Facebook</a>
                 </div>
             </div>
+        </div>
 
+        <div class="section-wrapper">
+            <div class="section-header">
+                <h3>MEMBERS</h3>
+                <span>/ 03</span>
+            </div>
+        </div>
+        <div class="grid" id="memberGrid">
             <div class="member-card member">
-                <div class="avatar-container">
-                    <div class="member-avatar"></div>
-                    <div class="status-dot"></div>
-                </div>
+                <div class="avatar-container"><div class="member-avatar"></div><div class="status-dot"></div></div>
                 <div class="member-info">
                     <span class="role-label member-label">MEMBER</span>
                     <h4 class="member-name">Augusty Threethousand</h4>
                     <a href="#" class="facebook-link">Facebook</a>
                 </div>
             </div>
-
             <div class="member-card member">
-                <div class="avatar-container">
-                    <div class="member-avatar"></div>
-                    <div class="status-dot"></div>
-                </div>
+                <div class="avatar-container"><div class="member-avatar"></div><div class="status-dot"></div></div>
                 <div class="member-info">
                     <span class="role-label member-label">MEMBER</span>
                     <h4 class="member-name">Leen Godyouknow</h4>
@@ -382,13 +365,10 @@
             </div>
         </div>
 
-        <div class="system-design">
-            SYSTEM DESIGN BY NALI CLOUD
-        </div>
+        <div class="system-design">SYSTEM DESIGN BY NALI CLOUD</div>
     </div>
 
     <script>
-        // ฟังก์ชันสร้างหยดน้ำฝน
         function createRain() {
             const container = document.getElementById('rainContainer');
             const dropCount = 100;
@@ -403,12 +383,10 @@
             }
         }
 
-        // ฟังก์ชันค้นหารายชื่อ (Real-time Search)
         function searchFunction() {
             const input = document.getElementById('memberSearch');
             const filter = input.value.toUpperCase();
-            const grid = document.getElementById('memberGrid');
-            const cards = grid.getElementsByClassName('member-card');
+            const cards = document.getElementsByClassName('member-card');
 
             for (let i = 0; i < cards.length; i++) {
                 const name = cards[i].getElementsByClassName('member-name')[0];
