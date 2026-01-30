@@ -10,27 +10,51 @@
     <style>
         body {
             background-color: #030303;
-            /* ปรับ Background เป็นลายเกล็ดหิมะตามรูป image_80e1fe.png */
-            background-image: 
-                linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), 
-                url('https://img5.pic.in.th/file/secure-sv1/Untitled-2b13b6916ef20d67c.png'); /* เปลี่ยนเป็น path รูป image_80e1fe.png ของคุณ */
-            background-repeat: repeat;
-            background-size: 150px;
             color: #e0e0e0;
             font-family: 'Space Mono', 'Kanit', sans-serif;
             margin: 0;
             padding: 0;
             min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- Rain Animation Background --- */
+        .rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .drop {
+            position: absolute;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.2));
+            width: 1px;
+            height: 80px;
+            top: -100px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh);
+            }
         }
 
         .container {
             width: 100%;
-            max-width: 1100px; /* ขยายขนาดให้กว้างเท่ารูป */
+            max-width: 1100px;
             margin: 0 auto;
             padding: 80px 20px;
+            position: relative;
+            z-index: 1;
         }
 
-        /* --- Header Section (ตามรูป image_81388f.png) --- */
+        /* --- Header Section (image_81388f.png) --- */
         .main-header {
             text-align: center;
             margin-bottom: 120px;
@@ -38,7 +62,7 @@
 
         .main-header h1 {
             font-family: 'Black Ops One', cursive;
-            font-size: 6rem;
+            font-size: clamp(3rem, 10vw, 6rem);
             color: #fff;
             letter-spacing: 15px;
             margin: 0;
@@ -66,7 +90,7 @@
             margin: 0;
         }
 
-        /* --- Section Header (ตามรูป image_8134b1.png) --- */
+        /* --- Section Header --- */
         .section-header {
             display: flex;
             align-items: baseline;
@@ -87,7 +111,7 @@
             margin-left: 20px;
         }
 
-        /* --- Member Grid (เรียงแบบ 2 คอลัมน์) --- */
+        /* --- Member Grid (2 คอลัมน์) --- */
         .grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -95,7 +119,7 @@
         }
 
         .member-card {
-            background-color: #0d0d0d;
+            background-color: rgba(13, 13, 13, 0.8);
             border: 1px solid #1a1a1a;
             border-radius: 15px;
             padding: 22px 30px;
@@ -104,20 +128,19 @@
             gap: 25px;
             position: relative;
             transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
         }
 
-        /* เฉดสีขอบตามตำแหน่ง */
         .member-card.founder { border-color: #f7a32240; box-shadow: 0 0 15px rgba(247, 163, 34, 0.05); }
         .member-card.leader { border-color: #e74c3c40; box-shadow: 0 0 15px rgba(231, 76, 60, 0.05); }
         .member-card.member { border-color: #ffffff08; }
 
         .member-card:hover {
-            background-color: #121212;
+            background-color: rgba(18, 18, 18, 0.9);
             transform: translateY(-5px);
             border-color: #555;
         }
 
-        /* Avatar Section (ปรับรูปโปรไฟล์ตามที่ส่งมา) */
         .avatar-container {
             position: relative;
             width: 85px;
@@ -129,7 +152,6 @@
             width: 100%;
             height: 100%;
             border-radius: 12px;
-            /* ใช้ลิงก์โปรไฟล์ที่คุณส่งมา */
             background-image: url('https://img5.pic.in.th/file/secure-sv1/Untitled-2b13b6916ef20d67c.png');
             background-size: cover;
             background-position: center;
@@ -148,7 +170,6 @@
             box-shadow: 0 0 10px #2ecc71;
         }
 
-        /* Info Section */
         .member-info {
             display: flex;
             flex-direction: column;
@@ -194,18 +215,19 @@
             text-align: center;
             margin-top: 200px;
             font-size: 0.8rem;
-            color: #1a1a1a;
+            color: #222;
             letter-spacing: 5px;
             text-transform: uppercase;
         }
 
         @media (max-width: 900px) {
             .grid { grid-template-columns: 1fr; }
-            .main-header h1 { font-size: 3.5rem; }
         }
     </style>
 </head>
 <body>
+
+    <div class="rain" id="rainContainer"></div>
 
     <div class="container">
         <div class="main-header">
@@ -300,5 +322,26 @@
         </div>
     </div>
 
+    <script>
+        function createRain() {
+            const container = document.getElementById('rainContainer');
+            const dropCount = 100; // จำนวนหยดน้ำ
+
+            for (let i = 0; i < dropCount; i++) {
+                const drop = document.createElement('div');
+                drop.classList.add('drop');
+                
+                // สุ่มตำแหน่งและความเร็ว
+                drop.style.left = Math.random() * 100 + 'vw';
+                drop.style.animationDuration = (Math.random() * 0.5 + 0.5) + 's';
+                drop.style.animationDelay = Math.random() * 2 + 's';
+                drop.style.opacity = Math.random() * 0.3;
+
+                container.appendChild(drop);
+            }
+        }
+
+        createRain();
+    </script>
 </body>
 </html>
