@@ -88,7 +88,7 @@
             margin: 0;
         }
 
-        /* --- Section Wrapper (หัวข้อ + ค้นหา) --- */
+        /* --- Section Wrapper (หัวข้อ + ค้นหา วางตรงข้ามกัน) --- */
         .section-wrapper {
             display: flex;
             justify-content: space-between;
@@ -136,8 +136,8 @@
         }
 
         .search-container input:focus {
-            border-color: #555;
-            box-shadow: 0 0 10px rgba(255,255,255,0.05);
+            border-color: #f7a322;
+            box-shadow: 0 0 10px rgba(247, 163, 34, 0.1);
         }
 
         .search-container i {
@@ -149,21 +149,21 @@
             font-size: 0.9rem;
         }
 
-        /* --- Member Grid (3 คอลัมน์) --- */
+        /* --- Member Grid (เรียงรายชื่อแถวละ 4 คนตาม UI เดิม) --- */
         .grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
         }
 
         .member-card {
             background-color: rgba(13, 13, 13, 0.85);
             border: 1px solid #1a1a1a;
             border-radius: 12px;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
             position: relative;
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
@@ -181,16 +181,17 @@
             background-color: rgba(22, 22, 22, 0.95);
             transform: translateY(-5px);
             border-color: #555;
+            z-index: 2;
         }
 
-        /* Avatar Container Fix (ทำให้รูปพอดีกรอบ) */
+        /* Avatar Container Fix (ให้รูปพอดีกรอบเป๊ะ) */
         .avatar-container {
             position: relative;
-            width: 75px;
-            height: 75px;
+            width: 65px;
+            height: 65px;
             flex-shrink: 0;
-            border: 1px solid #222;
             border-radius: 10px;
+            border: 1px solid #222;
             overflow: hidden; /* บังคับให้รูปอยู่ในกรอบ */
         }
 
@@ -205,8 +206,8 @@
 
         .status-dot {
             position: absolute;
-            bottom: 5px;
-            right: 5px;
+            bottom: 3px;
+            right: 3px;
             width: 10px;
             height: 10px;
             background-color: #2ecc71;
@@ -223,7 +224,7 @@
         }
 
         .role-label {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             font-weight: 700;
             text-transform: uppercase;
             display: flex;
@@ -238,7 +239,7 @@
 
         .member-name {
             margin: 0;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             font-weight: 700;
             color: #fff;
             letter-spacing: 0.5px;
@@ -250,9 +251,9 @@
         .facebook-link {
             text-decoration: none;
             color: #0084ff;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 700;
-            margin-top: 5px;
+            margin-top: 4px;
         }
 
         .system-design {
@@ -264,13 +265,10 @@
             text-transform: uppercase;
         }
 
-        @media (max-width: 1000px) {
-            .grid { grid-template-columns: repeat(2, 1fr); }
-            .section-wrapper { flex-direction: column; align-items: flex-start; gap: 15px; }
-        }
-        @media (max-width: 600px) {
-            .grid { grid-template-columns: 1fr; }
-        }
+        /* สำหรับหน้าจอเล็ก */
+        @media (max-width: 1100px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 850px) { .grid { grid-template-columns: repeat(2, 1fr); } .section-wrapper { flex-direction: column; align-items: flex-start; gap: 15px; } }
+        @media (max-width: 500px) { .grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -331,6 +329,18 @@
                 <div class="member-info">
                     <span class="role-label founder-label"><i class="fas fa-crown"></i> FOUNDER</span>
                     <h4 class="member-name">Awake Prime</h4>
+                    <a href="#" class="facebook-link">Facebook</a>
+                </div>
+            </div>
+
+            <div class="member-card founder">
+                <div class="avatar-container">
+                    <div class="member-avatar"></div>
+                    <div class="status-dot"></div>
+                </div>
+                <div class="member-info">
+                    <span class="role-label founder-label"><i class="fas fa-crown"></i> FOUNDER</span>
+                    <h4 class="member-name">MeudMon Winterfall</h4>
                     <a href="#" class="facebook-link">Facebook</a>
                 </div>
             </div>
