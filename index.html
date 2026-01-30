@@ -88,7 +88,7 @@
             margin: 0;
         }
 
-        /* --- Section Header & Search Box (วางตรงข้ามกัน) --- */
+        /* --- Section Header & Search Box (จัดวางตรงข้ามกัน) --- */
         .section-wrapper {
             display: flex;
             justify-content: space-between;
@@ -114,7 +114,7 @@
 
         .section-header span {
             font-size: 1rem;
-            color: #222;
+            color: #333;
             margin-left: 15px;
         }
 
@@ -191,14 +191,14 @@
             flex-shrink: 0;
             border: 1px solid #222;
             border-radius: 10px;
-            overflow: hidden; 
+            overflow: hidden; /* บังคับให้รูปอยู่ในกรอบ */
         }
 
         .member-avatar {
             width: 100%;
             height: 100%;
             background-image: url('https://img5.pic.in.th/file/secure-sv1/Untitled-2b13b6916ef20d67c.png');
-            background-size: cover;
+            background-size: cover; /* ขยายรูปให้เต็มพื้นที่กรอบ */
             background-position: center;
             background-repeat: no-repeat;
         }
@@ -310,7 +310,6 @@
                     <a href="#" class="facebook-link">Facebook</a>
                 </div>
             </div>
-
             <div class="member-card founder">
                 <div class="avatar-container">
                     <div class="member-avatar"></div>
@@ -322,7 +321,6 @@
                     <a href="#" class="facebook-link">Facebook</a>
                 </div>
             </div>
-
             <div class="member-card founder">
                 <div class="avatar-container">
                     <div class="member-avatar"></div>
@@ -334,7 +332,6 @@
                     <a href="#" class="facebook-link">Facebook</a>
                 </div>
             </div>
-
             <div class="member-card leader">
                 <div class="avatar-container">
                     <div class="member-avatar"></div>
@@ -346,7 +343,6 @@
                     <a href="#" class="facebook-link">Facebook</a>
                 </div>
             </div>
-
             <div class="member-card member">
                 <div class="avatar-container">
                     <div class="member-avatar"></div>
@@ -358,7 +354,6 @@
                     <a href="#" class="facebook-link">Facebook</a>
                 </div>
             </div>
-
             <div class="member-card member">
                 <div class="avatar-container">
                     <div class="member-avatar"></div>
@@ -378,7 +373,7 @@
     </div>
 
     <script>
-        // ฟังก์ชันสร้างฝน
+        // ฟังก์ชันสร้างหยดน้ำฝน
         function createRain() {
             const container = document.getElementById('rainContainer');
             const dropCount = 100;
@@ -393,7 +388,7 @@
             }
         }
 
-        // ฟังก์ชันค้นหารายชื่อ
+        // ฟังก์ชันค้นหารายชื่อ (Real-time Search)
         function searchFunction() {
             const input = document.getElementById('memberSearch');
             const filter = input.value.toUpperCase();
