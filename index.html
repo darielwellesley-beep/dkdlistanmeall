@@ -88,8 +88,8 @@
             margin: 0;
         }
 
-        /* --- Section Header & Search Box --- */
-        .header-flex {
+        /* --- Section Header & Search Box (วางตรงข้ามกัน) --- */
+        .section-wrapper {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -118,16 +118,16 @@
             margin-left: 15px;
         }
 
-        /* ค้นหาที่ใช้ได้จริง */
-        .search-box {
+        /* Search Input Styling */
+        .search-container {
             position: relative;
         }
 
-        .search-box input {
-            background: rgba(20, 20, 20, 0.8);
-            border: 1px solid #333;
-            border-radius: 6px;
-            padding: 10px 15px 10px 40px;
+        .search-container input {
+            background: #0a0a0a;
+            border: 1px solid #222;
+            border-radius: 5px;
+            padding: 8px 15px 8px 35px;
             color: #fff;
             font-family: 'Space Mono', sans-serif;
             width: 250px;
@@ -135,23 +135,24 @@
             transition: 0.3s;
         }
 
-        .search-box input:focus {
-            border-color: #f7a322;
-            box-shadow: 0 0 10px rgba(247, 163, 34, 0.2);
+        .search-container input:focus {
+            border-color: #555;
+            box-shadow: 0 0 10px rgba(255,255,255,0.05);
         }
 
-        .search-box i {
+        .search-container i {
             position: absolute;
-            left: 15px;
+            left: 12px;
             top: 50%;
             transform: translateY(-50%);
-            color: #666;
+            color: #444;
+            font-size: 0.9rem;
         }
 
         /* --- Member Grid (3 คอลัมน์) --- */
         .grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* ปรับเป็น 3 คนต่อบรรทัด */
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
         }
 
@@ -168,7 +169,9 @@
             backdrop-filter: blur(5px);
         }
 
-        .member-card.hidden { display: none; }
+        .member-card.hidden {
+            display: none;
+        }
 
         .member-card.founder { border-color: #f7a32240; box-shadow: 0 0 10px rgba(247, 163, 34, 0.05); }
         .member-card.leader { border-color: #e74c3c40; box-shadow: 0 0 10px rgba(231, 76, 60, 0.05); }
@@ -178,10 +181,9 @@
             background-color: rgba(22, 22, 22, 0.95);
             transform: translateY(-5px);
             border-color: #555;
-            z-index: 2;
         }
 
-        /* ปรับแต่งโปรไฟล์ให้พอดีกับกรอบ */
+        /* Avatar Container Fix (พอดีกรอบเป๊ะ) */
         .avatar-container {
             position: relative;
             width: 75px;
@@ -189,14 +191,14 @@
             flex-shrink: 0;
             border: 1px solid #222;
             border-radius: 10px;
-            overflow: hidden; /* บังคับให้รูปอยู่ในกรอบ */
+            overflow: hidden; 
         }
 
         .member-avatar {
             width: 100%;
             height: 100%;
             background-image: url('https://img5.pic.in.th/file/secure-sv1/Untitled-2b13b6916ef20d67c.png');
-            background-size: cover; /* ปรับให้รูปพอดี */
+            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
@@ -205,8 +207,8 @@
             position: absolute;
             bottom: 5px;
             right: 5px;
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             background-color: #2ecc71;
             border-radius: 50%;
             border: 2px solid #0d0d0d;
@@ -251,12 +253,6 @@
             font-size: 0.8rem;
             font-weight: 700;
             margin-top: 5px;
-            transition: 0.2s;
-        }
-
-        .facebook-link:hover {
-            color: #fff;
-            text-shadow: 0 0 8px #0084ff;
         }
 
         .system-design {
@@ -268,13 +264,11 @@
             text-transform: uppercase;
         }
 
-        /* Responsive */
         @media (max-width: 1000px) {
             .grid { grid-template-columns: repeat(2, 1fr); }
-            .header-flex { flex-direction: column; align-items: flex-start; gap: 20px; }
-            .search-box input { width: 100%; }
+            .section-wrapper { flex-direction: column; align-items: flex-start; gap: 15px; }
         }
-        @media (max-width: 650px) {
+        @media (max-width: 600px) {
             .grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -293,14 +287,14 @@
             </div>
         </div>
 
-        <div class="header-flex">
+        <div class="section-wrapper">
             <div class="section-header">
                 <h3>FOUNDERS</h3>
                 <span>/ 01</span>
             </div>
-            <div class="search-box">
+            <div class="search-container">
                 <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" placeholder="SEARCH MEMBERS..." onkeyup="filterMembers()">
+                <input type="text" id="memberSearch" placeholder="SEARCH MEMBERS..." onkeyup="searchFunction()">
             </div>
         </div>
 
@@ -316,6 +310,7 @@
                     <a href="#" class="facebook-link">Facebook</a>
                 </div>
             </div>
+
             <div class="member-card founder">
                 <div class="avatar-container">
                     <div class="member-avatar"></div>
@@ -327,6 +322,7 @@
                     <a href="#" class="facebook-link">Facebook</a>
                 </div>
             </div>
+
             <div class="member-card founder">
                 <div class="avatar-container">
                     <div class="member-avatar"></div>
@@ -338,7 +334,7 @@
                     <a href="#" class="facebook-link">Facebook</a>
                 </div>
             </div>
-            
+
             <div class="member-card leader">
                 <div class="avatar-container">
                     <div class="member-avatar"></div>
@@ -362,6 +358,7 @@
                     <a href="#" class="facebook-link">Facebook</a>
                 </div>
             </div>
+
             <div class="member-card member">
                 <div class="avatar-container">
                     <div class="member-avatar"></div>
@@ -373,17 +370,6 @@
                     <a href="#" class="facebook-link">Facebook</a>
                 </div>
             </div>
-            <div class="member-card member">
-                <div class="avatar-container">
-                    <div class="member-avatar"></div>
-                    <div class="status-dot"></div>
-                </div>
-                <div class="member-info">
-                    <span class="role-label member-label">MEMBER</span>
-                    <h4 class="member-name">Kingeet Diamond</h4>
-                    <a href="#" class="facebook-link">Facebook</a>
-                </div>
-            </div>
         </div>
 
         <div class="system-design">
@@ -392,7 +378,7 @@
     </div>
 
     <script>
-        // สร้างฝน
+        // ฟังก์ชันสร้างฝน
         function createRain() {
             const container = document.getElementById('rainContainer');
             const dropCount = 100;
@@ -407,15 +393,16 @@
             }
         }
 
-        // ระบบค้นหารายชื่อ
-        function filterMembers() {
-            const input = document.getElementById('searchInput');
-            const filter = input.value.toLowerCase();
-            const cards = document.getElementsByClassName('member-card');
+        // ฟังก์ชันค้นหารายชื่อ
+        function searchFunction() {
+            const input = document.getElementById('memberSearch');
+            const filter = input.value.toUpperCase();
+            const grid = document.getElementById('memberGrid');
+            const cards = grid.getElementsByClassName('member-card');
 
             for (let i = 0; i < cards.length; i++) {
-                const name = cards[i].getElementsByClassName('member-name')[0].innerText;
-                if (name.toLowerCase().indexOf(filter) > -1) {
+                const name = cards[i].getElementsByClassName('member-name')[0];
+                if (name.innerText.toUpperCase().indexOf(filter) > -1) {
                     cards[i].classList.remove('hidden');
                 } else {
                     cards[i].classList.add('hidden');
