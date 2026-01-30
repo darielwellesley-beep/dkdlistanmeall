@@ -8,18 +8,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Space+Mono:wght@400;700&family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --bg-pattern: url('https://i.imgur.com/your-snowflake-pattern.png'); /* คุณสามารถเปลี่ยนเป็นไฟล์รูป image_80e1fe.png ของคุณได้ */
-        }
-
         body {
             background-color: #030303;
-            /* สร้างพื้นหลังลาย Pattern แบบในรูป */
+            /* ปรับ Background เป็นลายเกล็ดหิมะตามรูป image_80e1fe.png */
             background-image: 
-                linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
-                url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEUAAAD///8mJiYWFhYMDAwLCwsKCgoICAgGBgYFBQUDAwMCAgIBAQEAAAD8/Pz09PTu7u7m5ubk5OTc3Nzg4ODU1NTQ0NDMzMzLy8vGxsbExMSVv6XkAAAAB3RSTlMAAAAAAAAAY7p3VwAAAJJJREFUeNrt07sSgzAMBFAiY8D//9pAnIChS5vOnS7u6pU0Gm0at9v/Fm7vO8Y4xNo6p5S6OidVda6q6p6Hec9zXuY97/mY93zke87nPJ95L899X7p5fT7z3p/vvt779/3+7f37Y9X16vr8XfV56/V5fT7z3p/vvt779/3+7f37Y9X16vr8XfV56/X5fT7z3p/vvt779/3+7f37Y9X16vr8XfV56/V5fT4/f08fFwECuUv8AAAAAElFTkSuQmCC'); /* ลาย Pattern จำลอง */
+                linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), 
+                url('https://img5.pic.in.th/file/secure-sv1/Untitled-2b13b6916ef20d67c.png'); /* เปลี่ยนเป็น path รูป image_80e1fe.png ของคุณ */
             background-repeat: repeat;
-            background-size: 50px auto;
+            background-size: 150px;
             color: #e0e0e0;
             font-family: 'Space Mono', 'Kanit', sans-serif;
             margin: 0;
@@ -29,57 +25,56 @@
 
         .container {
             width: 100%;
-            max-width: 900px;
+            max-width: 1100px; /* ขยายขนาดให้กว้างเท่ารูป */
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 80px 20px;
         }
 
-        /* --- Header Section --- */
+        /* --- Header Section (ตามรูป image_81388f.png) --- */
         .main-header {
             text-align: center;
-            margin-bottom: 100px;
+            margin-bottom: 120px;
         }
 
         .main-header h1 {
             font-family: 'Black Ops One', cursive;
-            font-size: 5.5rem;
+            font-size: 6rem;
             color: #fff;
-            letter-spacing: 12px;
+            letter-spacing: 15px;
             margin: 0;
             text-transform: uppercase;
-            text-shadow: 0 0 20px rgba(255,255,255,0.1);
         }
 
         .main-header .sub-text {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
+            gap: 25px;
             margin-top: -10px;
         }
 
         .main-header .line {
             height: 1px;
-            width: 120px;
-            background: linear-gradient(to left, #333, transparent);
+            width: 180px;
+            background: linear-gradient(to left, #444, transparent);
         }
 
         .main-header h2 {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #444;
-            letter-spacing: 6px;
+            letter-spacing: 8px;
             margin: 0;
         }
 
-        /* --- Section Header --- */
+        /* --- Section Header (ตามรูป image_8134b1.png) --- */
         .section-header {
             display: flex;
             align-items: baseline;
-            margin: 80px 0 25px;
+            margin: 100px 0 30px;
         }
 
         .section-header h3 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
             margin: 0;
             color: #fff;
@@ -87,67 +82,70 @@
         }
 
         .section-header span {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #222;
-            margin-left: 15px;
+            margin-left: 20px;
         }
 
-        /* --- Member Grid & Cards --- */
+        /* --- Member Grid (เรียงแบบ 2 คอลัมน์) --- */
         .grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* เรียง 2 คอลัมน์แบบในรูป */
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
         }
 
         .member-card {
-            background-color: #0a0a0a;
+            background-color: #0d0d0d;
             border: 1px solid #1a1a1a;
-            border-radius: 12px;
-            padding: 18px 25px;
+            border-radius: 15px;
+            padding: 22px 30px;
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 25px;
             position: relative;
             transition: all 0.3s ease;
         }
 
-        /* Glow effects ตามตำแหน่ง */
-        .member-card.founder { border-color: #f7a32240; box-shadow: inset 0 0 10px rgba(247, 163, 34, 0.05); }
-        .member-card.leader { border-color: #e74c3c40; box-shadow: inset 0 0 10px rgba(231, 76, 60, 0.05); }
+        /* เฉดสีขอบตามตำแหน่ง */
+        .member-card.founder { border-color: #f7a32240; box-shadow: 0 0 15px rgba(247, 163, 34, 0.05); }
+        .member-card.leader { border-color: #e74c3c40; box-shadow: 0 0 15px rgba(231, 76, 60, 0.05); }
         .member-card.member { border-color: #ffffff08; }
 
         .member-card:hover {
-            background-color: #0f0f0f;
-            transform: scale(1.02);
-            border-color: #444;
+            background-color: #121212;
+            transform: translateY(-5px);
+            border-color: #555;
         }
 
-        /* Avatar with status dot */
+        /* Avatar Section (ปรับรูปโปรไฟล์ตามที่ส่งมา) */
         .avatar-container {
             position: relative;
-            width: 65px;
-            height: 65px;
+            width: 85px;
+            height: 85px;
+            flex-shrink: 0;
         }
 
         .member-avatar {
             width: 100%;
             height: 100%;
             border-radius: 12px;
-            background-color: #1a1a1a;
-            object-fit: cover;
+            /* ใช้ลิงก์โปรไฟล์ที่คุณส่งมา */
+            background-image: url('https://img5.pic.in.th/file/secure-sv1/Untitled-2b13b6916ef20d67c.png');
+            background-size: cover;
+            background-position: center;
             border: 1px solid #222;
         }
 
         .status-dot {
             position: absolute;
-            bottom: -3px;
-            right: -3px;
-            width: 12px;
-            height: 12px;
+            bottom: -4px;
+            right: -4px;
+            width: 14px;
+            height: 14px;
             background-color: #2ecc71;
             border-radius: 50%;
-            border: 2px solid #0a0a0a;
-            box-shadow: 0 0 8px #2ecc71;
+            border: 3px solid #0d0d0d;
+            box-shadow: 0 0 10px #2ecc71;
         }
 
         /* Info Section */
@@ -157,13 +155,13 @@
         }
 
         .role-label {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
             display: flex;
             align-items: center;
-            gap: 5px;
-            margin-bottom: 4px;
+            gap: 6px;
+            margin-bottom: 5px;
         }
 
         .founder-label { color: #f7a322; }
@@ -172,7 +170,7 @@
 
         .member-name {
             margin: 0;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: #fff;
             letter-spacing: 1px;
@@ -181,9 +179,9 @@
         .facebook-link {
             text-decoration: none;
             color: #0084ff;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             font-weight: 700;
-            margin-top: 6px;
+            margin-top: 8px;
             transition: 0.2s;
         }
 
@@ -192,19 +190,18 @@
             text-shadow: 0 0 10px #0084ff;
         }
 
-        /* Footer */
         .system-design {
             text-align: center;
-            margin-top: 150px;
-            font-size: 0.75rem;
+            margin-top: 200px;
+            font-size: 0.8rem;
             color: #1a1a1a;
-            letter-spacing: 4px;
+            letter-spacing: 5px;
             text-transform: uppercase;
         }
 
-        @media (max-width: 768px) {
-            .main-header h1 { font-size: 3rem; }
+        @media (max-width: 900px) {
             .grid { grid-template-columns: 1fr; }
+            .main-header h1 { font-size: 3.5rem; }
         }
     </style>
 </head>
@@ -216,7 +213,7 @@
             <div class="sub-text">
                 <div class="line"></div>
                 <h2>GODYOUKNOW MEMBERS</h2>
-                <div class="line" style="background: linear-gradient(to right, #333, transparent);"></div>
+                <div class="line" style="background: linear-gradient(to right, #444, transparent);"></div>
             </div>
         </div>
 
@@ -227,7 +224,7 @@
         <div class="grid">
             <div class="member-card founder">
                 <div class="avatar-container">
-                    <img src="https://via.placeholder.com/80/222/fff?text=TW" alt="Avatar" class="member-avatar">
+                    <div class="member-avatar"></div>
                     <div class="status-dot"></div>
                 </div>
                 <div class="member-info">
@@ -239,36 +236,12 @@
             
             <div class="member-card founder">
                 <div class="avatar-container">
-                    <img src="https://via.placeholder.com/80/222/fff?text=PW" alt="Avatar" class="member-avatar">
+                    <div class="member-avatar"></div>
                     <div class="status-dot"></div>
                 </div>
                 <div class="member-info">
                     <span class="role-label founder-label"><i class="fas fa-crown"></i> FOUNDER</span>
                     <h4 class="member-name">Paul Winterfall</h4>
-                    <a href="#" class="facebook-link">Facebook</a>
-                </div>
-            </div>
-
-            <div class="member-card founder">
-                <div class="avatar-container">
-                    <img src="https://via.placeholder.com/80/222/fff?text=AP" alt="Avatar" class="member-avatar">
-                    <div class="status-dot"></div>
-                </div>
-                <div class="member-info">
-                    <span class="role-label founder-label"><i class="fas fa-crown"></i> FOUNDER</span>
-                    <h4 class="member-name">Awake Prime</h4>
-                    <a href="#" class="facebook-link">Facebook</a>
-                </div>
-            </div>
-
-            <div class="member-card founder">
-                <div class="avatar-container">
-                    <img src="https://via.placeholder.com/80/222/fff?text=MW" alt="Avatar" class="member-avatar">
-                    <div class="status-dot"></div>
-                </div>
-                <div class="member-info">
-                    <span class="role-label founder-label"><i class="fas fa-crown"></i> FOUNDER</span>
-                    <h4 class="member-name">MeudMon Winterfall</h4>
                     <a href="#" class="facebook-link">Facebook</a>
                 </div>
             </div>
@@ -281,7 +254,7 @@
         <div class="grid">
             <div class="member-card leader">
                 <div class="avatar-container">
-                    <img src="https://via.placeholder.com/80/222/fff?text=NW" alt="Avatar" class="member-avatar">
+                    <div class="member-avatar"></div>
                     <div class="status-dot"></div>
                 </div>
                 <div class="member-info">
@@ -299,7 +272,7 @@
         <div class="grid">
             <div class="member-card member">
                 <div class="avatar-container">
-                    <img src="https://via.placeholder.com/80/222/fff?text=AT" alt="Avatar" class="member-avatar">
+                    <div class="member-avatar"></div>
                     <div class="status-dot"></div>
                 </div>
                 <div class="member-info">
@@ -308,10 +281,10 @@
                     <a href="#" class="facebook-link">Facebook</a>
                 </div>
             </div>
-            
+
             <div class="member-card member">
                 <div class="avatar-container">
-                    <img src="https://via.placeholder.com/80/222/fff?text=LG" alt="Avatar" class="member-avatar">
+                    <div class="member-avatar"></div>
                     <div class="status-dot"></div>
                 </div>
                 <div class="member-info">
